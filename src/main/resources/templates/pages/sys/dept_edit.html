@@ -1,76 +1,84 @@
 <!-- Horizontal Form -->
- <div class="box box-info">
-      <div class="box-header with-border">
-        <h3 class="box-title">添加部门</h3>
-      </div>
-      <!-- /.box-header -->
-      <!-- form start -->
-      <form class="form-horizontal">
-        <div class="box-body">
-          <div class="form-group">
-            <label for="nameId" class="col-sm-2 control-label">部门名称</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"  id="nameId" placeholder="名称">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="parentId" class="col-sm-2 control-label">上级部门</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control load-sys-dept" readonly="readonly" id="parentId" placeholder="上级部门">
-            </div>
-          </div>
-		  <div class="form-group">
-				<label for="sortId" class="col-sm-2 control-label">排序号：</label>
+<div class="box box-info">
+	<div class="box-header with-border">
+		<h3 class="box-title">娣诲姞閮ㄩ棬</h3>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
+	<form class="form-horizontal">
+		<div class="box-body">
+			<div class="form-group">
+				<label for="nameId" class="col-sm-2 control-label">閮ㄩ棬鍚嶇О</label>
 				<div class="col-sm-10">
-					<input type="text" id="sortId" placeholder="排序号" class="form-control">
+					<input type="text" class="form-control" id="nameId"
+						placeholder="鍚嶇О">
 				</div>
-		 </div>
-		   <div class="form-group">
-				<label for="noteId" class="col-sm-2 control-label">备注：</label>
+			</div>
+			<div class="form-group">
+				<label for="parentId" class="col-sm-2 control-label">涓婄骇閮ㄩ棬</label>
 				<div class="col-sm-10">
-					<input type="text" id="noteId" placeholder="备注" class="form-control">
+					<input type="text" class="form-control load-sys-dept"
+						readonly="readonly" id="parentId" placeholder="涓婄骇閮ㄩ棬">
 				</div>
-		 </div>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <button type="button" class="btn btn-default btn-cancel">Cancel</button>
-          <button type="button" class="btn btn-info pull-right btn-save">Save</button>
-        </div>
-        <!-- /.box-footer -->
-      </form>
-      <div class="layui-layer layui-layer-page layui-layer-molv layer-anim" id="treeLayer" type="page" times="2" showtime="0" contype="object"
-		style="z-index:59891016; width: 300px; height: 450px; top: 100px; left: 500px; display:none">
-		<div class="layui-layer-title" style="cursor: move;">选择部门</div>
-		<div class="layui-layer-content" style="height: 358px;">
-			<div style="padding: 10px;" class="layui-layer-wrap">
-				<ul id="zTreeId" class="ztree"></ul>    <!-- 动态加载树 -->
+			</div>
+			<div class="form-group">
+				<label for="sortId" class="col-sm-2 control-label">鎺掑簭鍙凤細</label>
+				<div class="col-sm-10">
+					<input type="text" id="sortId" placeholder="鎺掑簭鍙�"
+						class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="noteId" class="col-sm-2 control-label">澶囨敞锛�</label>
+				<div class="col-sm-10">
+					<input type="text" id="noteId" placeholder="澶囨敞"
+						class="form-control">
+				</div>
 			</div>
 		</div>
-		<span class="layui-layer-setwin"> <a class="layui-layer-ico layui-layer-close layui-layer-close1 btn-cancel" ></a></span>
+		<!-- /.box-body -->
+		<div class="box-footer">
+			<button type="button" class="btn btn-default btn-cancel">Cancel</button>
+			<button type="button" class="btn btn-info pull-right btn-save">Save</button>
+		</div>
+		<!-- /.box-footer -->
+	</form>
+	<div class="layui-layer layui-layer-page layui-layer-molv layer-anim"
+		id="treeLayer" type="page" times="2" showtime="0" contype="object"
+		style="z-index: 59891016; width: 300px; height: 450px; top: 100px; left: 500px; display: none">
+		<div class="layui-layer-title" style="cursor: move;">閫夋嫨閮ㄩ棬</div>
+		<div class="layui-layer-content" style="height: 358px;">
+			<div style="padding: 10px;" class="layui-layer-wrap">
+				<ul id="zTreeId" class="ztree"></ul>
+				<!-- 鍔ㄦ�佸姞杞芥爲 -->
+			</div>
+		</div>
+		<span class="layui-layer-setwin"> <a
+			class="layui-layer-ico layui-layer-close layui-layer-close1 btn-cancel"></a></span>
 		<div class="layui-layer-btn layui-layer-btn-">
-			<a class="layui-layer-btn0 btn-confirm">确定</a>
-			<a class="layui-layer-btn1 btn-cancel">取消</a>
-	     </div>
-   </div>
-      
-  </div>
-  <script type="text/javascript" src="bower_components/ztree/jquery.ztree.all.min.js"></script>
-  <script type="text/javascript" src="bower_components/layer/layer.js">
+			<a class="layui-layer-btn0 btn-confirm">纭畾</a> <a
+				class="layui-layer-btn1 btn-cancel">鍙栨秷</a>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript"
+	src="bower_components/ztree/jquery.ztree.all.min.js"></script>
+<script type="text/javascript" src="bower_components/layer/layer.js">
   </script>
- <script type="text/javascript">
+<script type="text/javascript">
   var zTree; 
-  //初始化zTree时会用到
+  //鍒濆鍖杬Tree鏃朵細鐢ㄥ埌
   var setting = {
   	data : {
   		simpleData : {
   			enable : true,
-  			idKey : "id",  //节点数据中保存唯一标识的属性名称
-  			pIdKey : "parentId",  //节点数据中保存其父节点唯一标识的属性名称
-  			rootPId : null  //根节点id
-  		}//json 格式javascript对象
+  			idKey : "id",  //鑺傜偣鏁版嵁涓繚瀛樺敮涓�鏍囪瘑鐨勫睘鎬у悕绉�
+  			pIdKey : "parentId",  //鑺傜偣鏁版嵁涓繚瀛樺叾鐖惰妭鐐瑰敮涓�鏍囪瘑鐨勫睘鎬у悕绉�
+  			rootPId : null  //鏍硅妭鐐筰d
+  		}//json 鏍煎紡javascript瀵硅薄
   	}
-  }//json 格式的javascript对象
+  }//json 鏍煎紡鐨刯avascript瀵硅薄
   
   $(function(){
 	  $(".form-horizontal")
@@ -90,7 +98,44 @@
 
 
   });
-
+  var columns = [
+	  {
+	  	field : 'selectItem',
+	  	radio : true
+	  },
+	  {
+	  	title : '部门ID',
+	  	field : 'id',
+	  	visible : false,
+	  	align : 'center',
+	  	valign : 'middle',
+	  	width : '80px'
+	  },
+	  {
+	  	title : '部门名称',
+	  	field : 'name',
+	  	align : 'center',
+	  	valign : 'middle',
+	  	sortable : true,
+	  	width : '130px'
+	  },
+	  {
+	  	title : '上级部门',
+	  	field : 'parentName',
+	  	align : 'center',
+	  	valign : 'middle',
+	  	sortable : true,
+	  	width : '130px'
+	  },
+	  {
+	  	title : '排序号',
+	  	field : 'sort', 
+	  	align : 'center',
+	  	valign : 'middle',
+	  	sortable : true,
+	  	width : '70px'
+	  }
+	  ];
 
 		function doInitEditFormData(data) {
 			$("#nameId").val(data.name);
@@ -108,15 +153,15 @@
 		}
 		
 		function doSaveOrUpdate() {
-			//1.获取表单数据
+			//1.鑾峰彇琛ㄥ崟鏁版嵁
 			var params = doGetEditFormData();
 			var rowData = $("#mainContentId").data("rowData");
 			if (rowData)params.id = rowData.id;
-			//2.定义url
+			//2.瀹氫箟url
 			var insertUrl = "dept/doSaveObject";
 			var updateUrl = "dept/doUpdateObject";
 			var url = rowData ? updateUrl : insertUrl;
-			//3.异步提交数据
+			//3.寮傛鎻愪氦鏁版嵁
 			$.post(url, params, function(result) {
 				if (result.state == 1) {
 					alert(result.message);
@@ -125,6 +170,21 @@
 					alert(result.message);
 				}
 			});
+		}
+
+		$(document).ready(function(){
+			doGetObjects();
+		}
+		function doGetObjects(){
+			//构建table对象
+			var table=new TreeTable(
+					 "gridTreeTable", //tableId
+					 "dept/doFindObjects", //url
+					columns);//columns
+		    //设置从哪一列展开内容(默认是第一列)
+			table.setExpandColumn(2);//可以不写
+			//初始化table对象(底层发ajax异步请求访问服务端)
+			table.init();
 		}
 
 		function doGetEditFormData() {
@@ -140,29 +200,29 @@
 		function doHideTree() {
 			$("#treeLayer").css("display", "none");
 		}
-		//确定按钮
+		//纭畾鎸夐挳
 		function doSetSelectNode() {
-			//1.获取选中的节点对象
+			//1.鑾峰彇閫変腑鐨勮妭鐐瑰璞�
 			var nodes = zTree.getSelectedNodes();
 			if (nodes.length == 0)
 				return;
 			var node = nodes[0];
 			console.log(node);
-			//2.将对象中内容,填充到表单
+			//2.灏嗗璞′腑鍐呭,濉厖鍒拌〃鍗�
 			$("#parentId").data("parentId", node.id);
 			$("#parentId").val(node.name);
-			//3.隐藏树对象
+			//3.闅愯棌鏍戝璞�
 			doHideTree();
 		}
 
 		function doLoadZtreeNodes() {
-			//显示div
+			//鏄剧ずdiv
 			$("#treeLayer").css("display", "block");
 			var url = "dept/doFindZTreeNodes";
-			//异步加载数据,并初始化数据
+			//寮傛鍔犺浇鏁版嵁,骞跺垵濮嬪寲鏁版嵁
 			$.getJSON(url, function(result) {
 				if (result.state == 1) {
-					//使用init函数需要先引入ztree对应的js文件
+					//浣跨敤init鍑芥暟闇�瑕佸厛寮曞叆ztree瀵瑰簲鐨刯s鏂囦欢
 					zTree = $.fn.zTree
 							.init($("#zTreeId"), setting, result.data);
 				} else {
@@ -171,12 +231,11 @@
 			})
 		}
 	</script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
