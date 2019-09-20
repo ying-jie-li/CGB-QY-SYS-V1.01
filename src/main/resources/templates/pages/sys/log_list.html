@@ -49,6 +49,126 @@
 </div>
 <script type="text/javascript">
      //补充JS
+   $(function(){
+    	$("#pageId").load("doPageUI",doGetObjects);
+    	$(".input-group-btn")
+    	.on("click",".btn-search",doQueryObjects)
+    	.on("click",".btn-delete",doDeleteObjects)
+    	$("#checkAll").change(doChangeTBodyCheckBoxState)
+    	$("#tbodyId").on("change",".cBox",doChangeTHeadCheckBoxState)
+    });
+     
+    function doChangeTHeadCheckBoxState(){
+    	var flag=true;
+    	$("#tbodyId input[type='checkbox']")
+    	.each(function(){
+    		flag=flag&$(this).prop("checked");
+    	});
+    	$("#checkAll").prop("checked",flag);
+    }
+    function doChangeTBodyCheckBoxState(){
+    	var flag=$(this).prop("checked");
+    	$("#tbodyId input[type='checkbox']")
+    	.each(function(){
+    		$(this).prop("checked",flag);
+    	})
+    }
+    function doGetCheckedIds(){
+    	var array=[];
+    	$("#tbodyId input[type='checkbox']")
+    	.each(function(){
+    		var checked=$(this).prop("checked");
+    		if(checked){
+    			array.push($(this).val());
+    		}
+    	});
+    	return array;
+    }
+     function doDeleteObjects(){
+       var idArray=doGetCheckedIds();
+       if(idArray.length==0){
+    	   alert("请先选中");
+    	   return;
+       }
+       if(!confirm("确定删除吗"))return;
+        var params={"ids":idArray.toString()};
+        var url="log/doDeleteObjects";
+       $.post(url,params,function(result){
+    	   if(result.state==1){
+    		   alert(result.message);
+    		   doDeleteRefreshPage();
+    	   }else{
+    		   alert(result.message);
+    	   }
+       })
+    }
+    function doDeleteRefreshPage(){
+    	var pageCurrent=$("#pageId").data("pageCurrent");
+    	var pageCount=$("#pageId").data("pageCount");
+    	var state=$("#checkAll").prop("checked");
+    	if(state&&pageCurrent==pageCount&&pageCurrent>1){
+    		pageCurrent--;
+    		$("#pageId").data("pageCurrent",pageCurrent);
+    	}
+    	doGetObjects();
+    }
+    function doQueryObjects(){
+    	$("#pageId").data("pageCurrent",1);
+    	doGetObjects();
+    }
+     function doGetObjects(){
+    	$("#checkAll").prop("checked",false);
+    	var pageCurrent=$("#pageId").data("pageCurrent");
+    	if(!pageCurrent)pageCurrent=1;
+    	var params={"pageCurrent":pageCurrent}
+    	var uname=$("#searchNameId").val();
+    	if(uname)params.username=uname;
+    	var url="log/doFindPageObjects";
+    	$.getJSON(url,params,function(result){
+    		
+    		doHandleResponseResult(result);
+    	});
+    }
+   
+    function doHandleResponseResult(result){
+    	console.log(result);
+    	if(result.state==1){
+    		
+    		doSetTableBodyRows(result.data.records);
+    		
+    		doSetPagination(result.data);
+    	}else{
+    		alert(result.message);
+    	}
+    }
+   
+    function doSetTableBodyRows(records){
+    	
+    	var tBody=$("#tbodyId");
+    	tBody.empty();
+    	
+    	for(var i=0;i<records.length;i++){
+    	  
+    	  var tr=$("<tr></tr>");
+    	  
+    	  var tds=doCreateTds(records[i]);
+    	
+    	  tr.append(tds);
+    	  
+    	  tBody.append(tr);
+    	}
+    }
+    
+    function doCreateTds(data){
+ 	   var tds="<td><input type='checkbox' class='cBox' name='cItem' value='"+data.id+"'></td>"+
+ 		   	 "<td>"+data.username+"</td>"+
+ 		     "<td>"+data.operation+"</td>"+
+ 		     "<td>"+data.method+"</td>"+
+ 		     "<td>"+data.params+"</td>"+
+ 		     "<td>"+data.ip+"</td>"+
+ 		     "<td>"+data.time+"</td>";	   
+       return tds;
+    }
 </script>
 
 
